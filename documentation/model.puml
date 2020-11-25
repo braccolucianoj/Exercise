@@ -1,0 +1,40 @@
+@startuml Design
+skinparam linetype ortho
+
+class Civilization {
+    name: string
+}
+
+class Army {
+    id: number
+    goldenCoins: number
+
+    public trainSoldier()
+    public transformSoldier()
+}
+
+class Soldier {
+    type: string
+    points: number
+}
+
+class Battle {
+    armyAId: Army
+    armyBId: Army
+    date: timestamp
+    winnerId: Army
+}
+
+class GoldenTransaction {
+    amount: number
+    description: string
+}
+
+' relatinships
+
+Civilization "1" -- "*" Army
+Army "1" -- "*" Soldier
+Army "2" -right- "*" Battle :battlesHistory
+Army "1" -left- "*" GoldenTransaction :goldenCoinsHistory
+
+@enduml
